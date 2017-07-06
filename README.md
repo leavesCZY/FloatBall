@@ -11,6 +11,4 @@
 
 ![](https://github.com/initobject/FloatBall/blob/master/1.gif)
 
-具体设计思路可以看我的个人网站：http://www.initobject.com/archives/557
-
 CSDN博客：http://blog.csdn.net/new_one_object/article/details/52181544
