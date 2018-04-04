@@ -9,6 +9,6 @@
 
 3. 点击屏幕不包含底部加速球的部位，加速球会隐藏，悬浮球重新出现
 
-![](https://github.com/initobject/FloatBall/blob/master/1.gif)
+![](https://github.com/leavesC/FloatBall/blob/master/1.gif)
 
-CSDN博客：http://blog.csdn.net/new_one_object/article/details/52181544
+简介：https://www.jianshu.com/p/7bf02ec9fd65
