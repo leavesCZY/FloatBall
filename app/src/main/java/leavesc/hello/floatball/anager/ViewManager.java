@@ -1,8 +1,9 @@
-package com.czy.floatball.Manager;
+package leavesc.hello.floatball.anager;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,10 +11,10 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
-import com.czy.floatball.View.FloatBall;
-import com.czy.floatball.View.FloatMenu;
-
 import java.lang.reflect.Field;
+
+import leavesc.hello.floatball.view.FloatBall;
+import leavesc.hello.floatball.view.FloatMenu;
 
 /**
  * Created by ZY on 2016/8/10.
@@ -41,7 +42,19 @@ public class ViewManager {
         init();
     }
 
-    public void init() {
+    //获取ViewManager实例
+    public static ViewManager getInstance(Context context) {
+        if (manager == null) {
+            synchronized (ViewManager.class) {
+                if (manager == null) {
+                    manager = new ViewManager(context);
+                }
+            }
+        }
+        return manager;
+    }
+
+    private void init() {
         windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         floatBall = new FloatBall(context);
         floatMenu = new FloatMenu(context);
@@ -113,10 +126,14 @@ public class ViewManager {
             floatBallParams = new LayoutParams();
             floatBallParams.width = floatBall.width;
             floatBallParams.height = floatBall.height - getStatusHeight();
-            floatBallParams.gravity = Gravity.TOP | Gravity.LEFT;
-            floatBallParams.type = LayoutParams.TYPE_TOAST;
+            floatBallParams.gravity = Gravity.TOP | Gravity.START;
             floatBallParams.flags = LayoutParams.FLAG_NOT_FOCUSABLE | LayoutParams.FLAG_NOT_TOUCH_MODAL;
             floatBallParams.format = PixelFormat.RGBA_8888;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                floatBallParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+            } else {
+                floatBallParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+            }
         }
         windowManager.addView(floatBall, floatBallParams);
     }
@@ -128,9 +145,13 @@ public class ViewManager {
             floatMenuParams.width = getScreenWidth();
             floatMenuParams.height = getScreenHeight() - getStatusHeight();
             floatMenuParams.gravity = Gravity.BOTTOM;
-            floatMenuParams.type = LayoutParams.TYPE_TOAST;
             floatMenuParams.flags = LayoutParams.FLAG_NOT_FOCUSABLE | LayoutParams.FLAG_NOT_TOUCH_MODAL;
             floatMenuParams.format = PixelFormat.RGBA_8888;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                floatMenuParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+            } else {
+                floatMenuParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+            }
         }
         windowManager.addView(floatMenu, floatMenuParams);
     }
@@ -142,30 +163,22 @@ public class ViewManager {
         }
     }
 
-    //获取ViewManager实例
-    public static ViewManager getInstance(Context context) {
-        if (manager == null) {
-            manager = new ViewManager(context);
-        }
-        return manager;
-    }
-
     //获取屏幕宽度
-    public int getScreenWidth() {
+    private int getScreenWidth() {
         Point point = new Point();
         windowManager.getDefaultDisplay().getSize(point);
         return point.x;
     }
 
     //获取屏幕高度
-    public int getScreenHeight() {
+    private int getScreenHeight() {
         Point point = new Point();
         windowManager.getDefaultDisplay().getSize(point);
         return point.y;
     }
 
     //获取状态栏高度
-    public int getStatusHeight() {
+    private int getStatusHeight() {
         try {
             Class<?> c = Class.forName("com.android.internal.R$dimen");
             Object object = c.newInstance();
@@ -176,4 +189,5 @@ public class ViewManager {
             return 0;
         }
     }
+
 }

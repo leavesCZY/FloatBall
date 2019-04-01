@@ -1,4 +1,4 @@
-package com.czy.floatball;
+package leavesc.hello.floatball;
 
 import org.junit.Test;
 

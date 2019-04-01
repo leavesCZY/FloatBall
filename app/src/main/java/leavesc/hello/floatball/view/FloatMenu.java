@@ -1,4 +1,4 @@
-package com.czy.floatball.View;
+package leavesc.hello.floatball.view;
 
 import android.content.Context;
 import android.view.MotionEvent;
@@ -7,8 +7,8 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 
-import com.czy.floatball.Manager.ViewManager;
-import com.czy.floatball.R;
+import leavesc.hello.floatball.R;
+import leavesc.hello.floatball.anager.ViewManager;
 
 /**
  * Created by ZY on 2016/8/10.
@@ -16,14 +16,12 @@ import com.czy.floatball.R;
  */
 public class FloatMenu extends LinearLayout {
 
-    private LinearLayout layout;
-
     private TranslateAnimation animation;
 
     public FloatMenu(final Context context) {
         super(context);
         View root = View.inflate(context, R.layout.float_menu, null);
-        layout = (LinearLayout) root.findViewById(R.id.layout);
+        LinearLayout layout = root.findViewById(R.id.layout);
         animation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0,
                 Animation.RELATIVE_TO_SELF, 0,
                 Animation.RELATIVE_TO_SELF, 1.0f,
@@ -46,4 +44,5 @@ public class FloatMenu extends LinearLayout {
     public void startAnimation() {
         animation.start();
     }
+
 }

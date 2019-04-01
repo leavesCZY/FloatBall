@@ -1,4 +1,4 @@
-package com.czy.floatball.View;
+package leavesc.hello.floatball.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -28,7 +28,7 @@ public class ProgressBall extends View {
     //view的高度
     private int height = 200;
     //最大进度值
-    private final int maxProgress = 100;
+    private static final int maxProgress = 100;
     //当前进度值
     private int currentProgress = 0;
     //目标进度值
@@ -145,7 +145,7 @@ public class ProgressBall extends View {
         setClickable(true);
     }
 
-    class DoubleTapRunnable implements Runnable {
+    private class DoubleTapRunnable implements Runnable {
         @Override
         public void run() {
             if (currentProgress < targetProgress) {
@@ -159,11 +159,11 @@ public class ProgressBall extends View {
     }
 
     //开启双击动作动画
-    public void startDoubleTapAnimation() {
+    private void startDoubleTapAnimation() {
         handler.postDelayed(doubleTapRunnable, 50);
     }
 
-    class SingleTapRunnable implements Runnable {
+    private class SingleTapRunnable implements Runnable {
         @Override
         public void run() {
             if (currentCount < Count) {
@@ -178,7 +178,7 @@ public class ProgressBall extends View {
     }
 
     //开启单击动作动画
-    public void startSingleTapAnimation() {
+    private void startSingleTapAnimation() {
         handler.postDelayed(singleTapRunnable, 100);
     }
 

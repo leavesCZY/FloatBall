@@ -1,4 +1,4 @@
-package com.czy.floatball.View;
+package leavesc.hello.floatball.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,7 +9,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.czy.floatball.R;
+import leavesc.hello.floatball.R;
 
 /**
  * Created by ZY on 2016/8/10.

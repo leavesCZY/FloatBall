@@ -19,9 +19,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="叶应是叶\nhttp://blog.csdn.net/new_one_object" />
+            android:text="https://www.jianshu.com/u/9df45b87cfdf" />
 
-        <com.czy.floatball.View.ProgressBall
+        <leavesc.hello.floatball.view.ProgressBall
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp" />

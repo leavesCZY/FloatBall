@@ -1,10 +1,10 @@
-package com.czy.floatball.Service;
+package leavesc.hello.floatball.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.czy.floatball.Manager.ViewManager;
+import leavesc.hello.floatball.anager.ViewManager;
 
 public class StartFloatBallService extends Service {
 
@@ -23,4 +23,5 @@ public class StartFloatBallService extends Service {
         manager.showFloatBall();
         super.onCreate();
     }
+
 }
